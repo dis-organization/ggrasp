@@ -4,7 +4,7 @@ gg and R and sp
 
 This is the "vector" version of tabularaster. 
 
-Extend ggeom to have doubly nested tables. 
+Extend gggeom to have doubly nested tables. 
 
 Use this basis to build data+pslg version atts, 1D primitives, vertices (unique)
 Use that to build 2D primitives. 
