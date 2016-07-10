@@ -22,6 +22,7 @@ nest1_.Spatial <- function(data, ...) {
 #' @examples
 #' library(tidyr)
 #' data(holy_poly)
+#' library(dplyr)
 #' spdata <- spbabel::sp(holy_poly, attr_tab = data_frame(mydat = c("a", "b")))
 #' ggg <- nest(spdata)
 #' @return nested tibble
@@ -56,7 +57,12 @@ nest_.Spatial <- function(data, ...) {
 #' @examples
 #' @importFrom ggplot2 ggplot aes geom_polygon
 #' @importFrom tidyr unnest
-plot.spnest <- function(x) {
-  ggplot(unnest(unnest(x))) + aes(x = x_, y = y_, group = branch_, fill = object_) + geom_polygon()
+plot.spnest <- function(x, holygon = TRUE) {
+  p <- ggplot(unnest(unnest(x))) + aes(x = x_, y = y_, group = branch_, fill = factor(mydat))
+  if (holygon) {
+    return(p + geom_holygon())
+  } else {
+    return(p + geom_polygon())
+  }
 }
 

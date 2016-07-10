@@ -24,4 +24,11 @@ Create nested tables from Spatial classes.
 For \code{nest_} the tables are doubly nested.
 For \code{nest1_} the tables are singly nested.
 }
+\examples{
+library(tidyr)
+data(holy_poly)
+library(dplyr)
+spdata <- spbabel::sp(holy_poly, attr_tab = data_frame(mydat = c("a", "b")))
+ggg <- nest(spdata)
+}
 

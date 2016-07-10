@@ -16,11 +16,11 @@ stat_nested <- function(mapping = NULL, data = NULL, geom = "polygon",
   )
 }
 
-#' @importFrom ggplot2 ggproto Stat GeomPolygon
+#' @importFrom ggplot2 coord_munch ggproto Stat GeomPolygon
 #' @importFrom grid pathGrob gpar
 #' @importFrom scales alpha
 #' @references http://qiita.com/kohske/items/9272e29a75d32416ff5e
-GeomHolygon <- ggproto(
+GeomHolygon <- ggplot2::ggproto(
   "GeomHolygon",
   ggplot2::GeomPolygon,
   extra_params = c("na.rm", "rule"),
@@ -34,14 +34,14 @@ GeomHolygon <- ggproto(
 
     first_idx <- !duplicated(munched$group)
     first_rows <- munched[first_idx, ]
-
+print(first_rows)
     ggplot2:::ggname(
       "geom_holygon",
       pathGrob(munched$x, munched$y, default.units = "native",
                id = munched$group, rule = rule,
                gp = gpar(col = first_rows$colour,
                          fill = alpha(first_rows$fill, first_rows$alpha),
-                         lwd = first_rows$size * .pt,
+                         lwd = first_rows$size * 1, #.pt,
                          lty = first_rows$linetype)))
   }
 )
