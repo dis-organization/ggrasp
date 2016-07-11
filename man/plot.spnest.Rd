@@ -4,12 +4,16 @@
 \alias{plot.spnest}
 \title{Plot spnest}
 \usage{
-\method{plot}{spnest}(x, holygon = TRUE)
+\method{plot}{spnest}(x, y = "object_", col = "#7F7F7F7F", ...,
+  add = FALSE)
 }
 \arguments{
 \item{x}{nested tibble}
 }
 \description{
 Basic ggplot of nested tibble.
+}
+\examples{
+hp <- bind_rows(lapply(split(coords, coords$branch_), function(x) if (x$island_[1]) x else {x <- x[nrow(x):1, ]; x}))
 }
 

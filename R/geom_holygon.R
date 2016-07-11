@@ -35,6 +35,7 @@ GeomHolygon <- ggplot2::ggproto(
     first_idx <- !duplicated(munched$group)
     first_rows <- munched[first_idx, ]
 print(first_rows)
+print(munched)
     ggplot2:::ggname(
       "geom_holygon",
       pathGrob(munched$x, munched$y, default.units = "native",

@@ -29,6 +29,11 @@ library(tidyr)
 data(holy_poly)
 library(dplyr)
 spdata <- spbabel::sp(holy_poly, attr_tab = data_frame(mydat = c("a", "b")))
+##ggplot(holy_poly, aes(x = x_, y = y_)) + geom_holygon(aes(group = branch_, fill = object_))
 ggg <- nest(spdata)
+plot(ggg, col = rainbow(nrow(ggg), alpha = 0.5))
+## plot with ggvis
+##holy_poly  \%>\% group_by(object_)  \%>\% ggvis(~x_, ~y_, fill = ~object_, stroke = ~branch_)  \%>\% layer_paths()
+
 }
 
