@@ -18,15 +18,28 @@ gg and R and sp
 
 This is the "vector" version of tabularaster. 
 
-Write analogy to gggeom to have doubly nested tables. 
+- convert to gris normalized
 
 ```{r}
 library(ggrasp)
 library(tibble)
 library(tidyr)
-
+library(gris)
 data(holy_poly)
-spdata <- spbabel::sp(holy_poly, attr_tab = tibble(mydat = c("a", "b", "c")))
+spdata <- spbabel::sp(holy_poly, attr_tab = tibble(object_ = 1:3, mydat = c("a", "b", "c")))
+
+x <- spdata
+br <- gris(x)  ## gris
+
+pr1 <- primitives1D(br) ## edges
+pr2 <- primitives2D(pr1) ## triangles
+
+
+```
+
+Write analogy to gggeom to have doubly nested tables. 
+
+```{r}
 ggg <- nest(spdata)
 plot(ggg, col = rainbow(nrow(ggg), alpha = 0.5))
 ```
@@ -37,6 +50,7 @@ Use this basis to build data+pslg version atts, 1D primitives, vertices (unique)
 Decompose to just edges. 
 
 ```{r}
+
 #edges <- primitives1D()
 ```
 
